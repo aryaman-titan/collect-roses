@@ -12,9 +12,23 @@
     </style>
   </head>
   <body>
+
+    
+
     <center>
-      <canvas id="canvas" width="600" height="400" tabindex="1"></canvas>
+      Enter your name!<br>
+      <input type="text" id="user" style = "width: 100px;" onchange="setName()"></input>
     </center>
   </body>
-  <script src="game.js"></script>
+ 
+  <script>
+      
+    function setName(){
+            var name = document.getElementById("user").value;
+        console.log(name);
+        localStorage.setItem("player", name);
+     window.location.replace("game.html");
+    }
+</script>
+  
 </html>

@@ -67,7 +67,8 @@ function menu() {
   context.fillStyle = "#000000";
   context.font = "36px Arial";
   context.textAlign = "center";
-  context.fillText("Collect the Square!", canvas.width / 2, canvas.height / 4);
+  var name = localStorage.getItem("player");
+  context.fillText(name+" is welcomed!", canvas.width / 2, canvas.height / 4);
   context.font = "24px Arial";
   context.fillText("Click to Start", canvas.width / 2, canvas.height / 2);
   context.font = "18px Arial";
@@ -95,6 +96,11 @@ function startGame() {
 function endGame() {
   clearInterval(id);
 
+  if(localStorage.getItem("high-score") < score){
+    localStorage.setItem("high-score", score )
+  }
+    
+  
   erase();
   context.fillStyle = "#000000";
   context.font = "24px Arial";
@@ -110,15 +116,14 @@ function endGame() {
     canvas.width / 2,
     0.75*canvas.height
   );
+  context.fillText("Highest Score: "+ localStorage.getItem("high-score"), 0.8*canvas.width, 0.1*canvas.height);
 
-
- 
 
 }
 
 function moveTarget() {
-  targetX = Math.round(Math.random() * canvas.width - targetLength);
-  targetY = Math.round(Math.random() * canvas.height - targetLength);
+  targetX = Math.round(Math.random(0) * canvas.width );
+  targetY = Math.round(Math.random() * canvas.height );
 }
 
 function erase() {
@@ -187,6 +192,6 @@ function draw() {
     window.requestAnimationFrame(draw);
   }
 }
-
+localStorage.setItem("high-score", 0 );
 menu();
 canvas.focus();
