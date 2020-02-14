@@ -62,6 +62,8 @@ canvas.addEventListener("keyup", function(event) {
 
 function menu() {
   erase();
+  countdown = 30;
+  score = 0;
   context.fillStyle = "#000000";
   context.font = "36px Arial";
   context.textAlign = "center";
@@ -102,6 +104,16 @@ function endGame() {
     canvas.width / 2,
     canvas.height / 2
   );
+  canvas.addEventListener("click",menu);
+  context.fillText(
+    "Click to restart game!",
+    canvas.width / 2,
+    0.75*canvas.height
+  );
+
+
+ 
+
 }
 
 function moveTarget() {
